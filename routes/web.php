@@ -9,7 +9,10 @@ Route::get("/", function () {
 });
 
 Route::get("/jobs", function () {
-    return view("jobs", ["jobs" => Job::all()]);
+    // get() -> select *
+    // use limiting or pagination for larger number of records
+    $jobs = Job::with('employer')->get();
+    return view("jobs", ["jobs" => $jobs]);
 });
 
 Route::get("/jobs/{id}", function ($id) {

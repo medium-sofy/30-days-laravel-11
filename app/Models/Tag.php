@@ -17,4 +17,9 @@ class Tag extends Model
             relatedPivotKey: "job_listing_id"
         );
     }
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }
