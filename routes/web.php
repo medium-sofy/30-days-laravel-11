@@ -11,7 +11,7 @@ Route::get("/", function () {
 Route::get("/jobs", function () {
     // get() -> select *
     // use limiting or pagination for larger number of records
-    $jobs = Job::with('employer')->get();
+    $jobs = Job::with('employer')->paginate(3);
     return view("jobs", ["jobs" => $jobs]);
 });
 
