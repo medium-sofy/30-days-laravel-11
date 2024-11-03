@@ -20,7 +20,12 @@ class SessionController extends Controller
             'password' => ['required'],
         ]);
         //attempt to login the user
-        Auth::attempt($attributes);
+        if(!Auth::attempt($attributes))
+         {
+            throw ValidationException::withMessages([
+                'email'=> 'Sorry, those credentials do not match'
+            ]);
+        };
         //regenerate the session token
         request()->session()->regenerate();
         //redirect
