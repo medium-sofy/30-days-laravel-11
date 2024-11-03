@@ -6,7 +6,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisteredUserController;
 
 Route::view('/', 'home');
-Route::view('/', 'contact');
+Route::view('/contact', 'contact');
 
 Route::resource('jobs',JobController::class);
 
