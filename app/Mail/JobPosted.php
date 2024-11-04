@@ -2,12 +2,13 @@
 
 namespace App\Mail;
 
+use App\Models\Job;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class JobPosted extends Mailable
 {
@@ -16,7 +17,7 @@ class JobPosted extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public Job $job)
     {
         //
     }
@@ -36,6 +37,7 @@ class JobPosted extends Mailable
      */
     public function content(): Content
     {
+        // when we defined the Job model in the constructor, it automatically gets passed to the mail view
         return new Content(
             view: 'mail.job-posted',
         );
